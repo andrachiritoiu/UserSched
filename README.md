@@ -13,28 +13,24 @@ Proiectul este implementat ca **simulator în user-space**, cu suport pentru sta
 ---
 
 ## Structura proiectului
+
+```text
 usersched/
-├── include/
+├── include/           # Header files (Interfețe)
+│   ├── sched.h        # Interfața publică a schedulerului
+│   ├── proc.h         # Structura proceselor și funcții auxiliare
+│   └── stats.h        # Definiții pentru statistici de execuție
+│
+├── src/               # Codul sursă (Implementare)
+│   ├── scheduler.c    # Implementarea algoritmului User Weighted RR
+│   ├── process.c      # Modelul de proces (creare, stări)
+│   ├── stats.c        # Logică pentru colectare și afișare statistici
+│   └── main.c         # Punctul de intrare (Simulatorul)
+│
+├── tests/             # Suita de teste
+│   └── test_basic.c   # Teste de bază (corectitudine și fairness)
+│
+├── Makefile           # Script de compilare
+└── README.md          # Documentația proiectului
+```
 
-│   ├── sched.h    # Interfața schedulerului
-
-│   ├── proc.h     # Structura și funcțiile proceselor
-
-│   └── stats.h    # Statistici de execuție
-
-├── src/
-
-│   ├── scheduler.c # Algoritmul user weighted round-robin
-
-│   ├── process.c   # Modelul de proces
-
-│   ├── stats.c     # Colectare și afișare statistici
-
-│   └── main.c      # Simulatorul
-
-├── tests/
-│   └── test_basic.c # Teste pentru corectitudine și fairness
-
-├── Makefile
-
-└── README.md
