@@ -31,7 +31,7 @@ typedef struct sched_decision{
 
 //initilaizare
 void sched_init(sched_t *sched, int quantum_base_n);
-
+void sched_add_user(sched_t *sched, int uid, int weight);
 
 
 #endif 
