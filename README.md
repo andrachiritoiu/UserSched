@@ -1,36 +1,59 @@
 # UserSched – User Weighted Round-Robin Scheduler
 
-## Descriere
-Acest proiect implementează un **scheduler user weighted round-robin**.
+## Description
+This project implements a **User Weighted Round-Robin scheduler**.
 
-Algoritmul planifică execuția proceselor în funcție de **utilizator**, nu direct de proces:
-- utilizatorii sunt parcurși în **ordine round-robin**
-- fiecărui utilizator i se alocă un timp de execuție proporțional cu **ponderea (weight)** sa
-- pentru utilizatorul selectat, se alege un proces ready care este rulat pentru un **quantum finit**
+The algorithm schedules process execution based on **users**, not directly on individual processes:
+- users are traversed in **round-robin order**
+- each user is assigned an execution time proportional to their **weight**
+- for the selected user, a ready process is chosen and executed for a **finite quantum**
 
-Proiectul este implementat ca **simulator în user-space**, cu suport pentru statistici și teste.
+The project is implemented as a **user-space simulator**, with support for statistics and testing.
 
 ---
 
-## Structura proiectului
+## Project Structure
 
 ```text
 usersched/
-├── include/           # Header files (Interfețe)
-│   ├── sched.h        # Interfața publică a schedulerului
-│   ├── proc.h         # Structura proceselor și funcții auxiliare
-│   └── stats.h        # Definiții pentru statistici de execuție
+├── include/           # Header files (Interfaces)
+│   ├── sched.h        # Public scheduler interface
+│   ├── proc.h         # Process structure and helper functions
 │
-├── src/               # Codul sursă (Implementare)
-│   ├── scheduler.c    # Implementarea algoritmului User Weighted RR
-│   ├── process.c      # Modelul de proces (creare, stări)
-│   ├── stats.c        # Logică pentru colectare și afișare statistici
-│   └── main.c         # Punctul de intrare (Simulatorul)
+├── src/               # Source code (Implementation)
+│   ├── scheduler.c    # User Weighted RR algorithm implementation
+│   ├── process.c      # Process model (creation, execution)
+│   └── main.c         # Entry point (Simulator)
 │
-├── tests/             # Suita de teste
-│   └── test_basic.c   # Teste de bază (corectitudine și fairness)
-│
-├── Makefile           # Script de compilare
-└── README.md          # Documentația proiectului
+├── Makefile           # Build script
+── README.md          # Project documentation
 ```
 
+
+## Algorithm Overview
+
+The scheduler uses a **two-level scheduling strategy**:
+
+### 1. User-Level Scheduling (Round-Robin)
+- Users are scheduled in **round-robin order**
+- Only users with at least one ready process are considered
+- A round-robin index (`rr_index`) ensures fair traversal
+
+### 2. Process-Level Scheduling (FIFO)
+- Each user maintains a **FIFO queue** of ready processes
+- Once a user is selected, the first process in the queue is chosen
+
+-----
+## Run
+
+After building the project, run the scheduler simulator using:
+
+```bash
+./usersched
+```
+
+Alternatively, if the `run` target is defined in the Makefile, you can execute:
+
+```bash
+make run
+```
