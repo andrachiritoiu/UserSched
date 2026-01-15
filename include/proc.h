@@ -8,4 +8,7 @@ typedef struct proc{
     struct proc *next; //coada
 }proc_t;
 
+proc_t* proc_create(int pid, int uid, int ticks);
+void proc_run(proc_t *p, int ticks);
+
 #endif

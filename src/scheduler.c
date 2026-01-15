@@ -11,7 +11,7 @@ void sched_init(sched_t *sched, int quantum_base_n){
 
 
 
-//adaugare user
+//adaugare user 
 static int find_user_index(const sched_t *sched, int uid){
     for(int i=0; i<sched->user_count; i++){
         if(sched->users[i].uid == uid) return i;
