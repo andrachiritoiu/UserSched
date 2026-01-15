@@ -1,7 +1,7 @@
 # UserSched – User Weighted Round-Robin Scheduler
 
 ## Descriere
-Acest proiect implementează un **scheduler user weighted round-robin**, conform cerinței proiectului 9 la Sisteme de Operare.
+Acest proiect implementează un **scheduler user weighted round-robin**.
 
 Algoritmul planifică execuția proceselor în funcție de **utilizator**, nu direct de proces:
 - utilizatorii sunt parcurși în **ordine round-robin**
